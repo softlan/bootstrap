@@ -4,6 +4,44 @@
     <title>bootstrap</title>
 </head>
 
-<body>
 
-</body>
+
+<template name="layout">
+    <div class="container">
+        <header class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="/">Microscope</a>
+            </div>
+        </header>
+        <div id="main" class="row-fluid">
+            {{> yield}}
+        </div>
+    </div>
+</template>
+
+<template name="home1">
+    <div class="posts page">
+        <div class="wrapper">
+            <p>Это домашняя страница</p>
+        </div>
+
+    </div>
+</template>
+
+<template name="second">
+    <div class="posts page">
+        <div class="wrapper">
+            <p>Это вторая страница</p>
+        </div>
+
+    </div>
+</template>
+
+<template name="features1">
+    <div class="posts page">
+        <div class="wrapper">
+            <p>Это новая страница</p>
+        </div>
+
+    </div>
+</template>

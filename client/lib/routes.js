@@ -2,34 +2,68 @@
     {
         path: '/',
         name: 'home',
-            main: 'home',
-            nav: "nav"
+        tpl: 'home',
+        fields: [
+            { main: 'home' },
+            { nav: "nav" }
+        ]
     },
     {
-        path: '/features',
+        path: 'second',
+        name: 'second',
+        tpl: 'second',
+        fields: [
+            { main: 'home' },
+            { nav: "nav" }
+        ]
+    },
+    {
+        path: 'features',
         name: 'features',
-            main: 'features',
-            nav: "nav"
+        tpl: 'features',
+        fields: [
+            { main: 'features' },
+            { nav: "nav" }
+        ]
     },
 ];
 
-for (var i = 0; i < arr.length; i++) {
 
-    var path = i == 0 ? '/' : '/features';
-    var name = i == 0 ? 'home' : 'features';
-    var main = i == 0 ? 'home' : 'features';
-    var nav = i == 0 ? 'nav' : 'nav';
 
-    FlowRouter.route(path, {
-        name: name,
-        action() {
-            BlazeLayout.render('masterLayout', {
-                main: main,
-                nav: nav
-            });
+FlowRouter.route('/', {
+    name: 'home',
+    action() {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].path == '/') {
+                var page = arr[i];
+            }
         }
-    });
-}
+
+        BlazeLayout.render('masterLayout', {
+            main: page.tpl,
+            nav: "nav"
+        });
+    }
+});
+
+
+FlowRouter.route('/:page', {
+    name: 'page',
+    action() {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].path == this.options.action.arguments[0].page) {
+                var page = arr[i];
+            }
+        }
+
+        BlazeLayout.render('masterLayout', {
+            main: page.tpl,
+            nav: "nav"
+        });
+    }
+});
+
+
 
 /*FlowRouter.route('/', {
     name: 'home',
