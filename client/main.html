@@ -6,42 +6,38 @@
 
 
 
+
 <template name="layout">
-    <div class="container">
-        <header class="navbar">
-            <div class="navbar-inner">
-                <a class="brand" href="/">Microscope</a>
+
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Cover</h3>
+                        <ul class="nav masthead-nav">
+                            <li class="{{isActiveRoute 'home'}}"><a href="/">Home</a></li>
+                            <li class="{{isActiveRoute 'features'}}"><a href="/features">Features</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{> yield}}
+
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                    </div>
+                </div>
+
             </div>
-        </header>
-        <div id="main" class="row-fluid">
-            {{> yield}}
-        </div>
-    </div>
-</template>
 
-<template name="home1">
-    <div class="posts page">
-        <div class="wrapper">
-            <p>Это домашняя страница</p>
         </div>
 
     </div>
-</template>
 
-<template name="second">
-    <div class="posts page">
-        <div class="wrapper">
-            <p>Это вторая страница</p>
-        </div>
-
-    </div>
-</template>
-
-<template name="features1">
-    <div class="posts page">
-        <div class="wrapper">
-            <p>Это новая страница</p>
-        </div>
-
-    </div>
 </template>

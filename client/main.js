@@ -1,7 +1,11 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { Mongo } from 'meteor/mongo';
 
 import './main.html';
+
+if (true) import './imports/org/otk/tpl/cover/css/cover.css';
+else import './imports/org/otk/tpl/justified/css/justified-nav.css';
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
@@ -19,4 +23,9 @@ Template.hello.events({
     // increment the counter when button is clicked
     instance.counter.set(instance.counter.get() + 1);
   },
+});
+
+fireReload = false;
+
+Meteor.startup(function () {
 });

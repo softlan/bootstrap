@@ -24,4 +24,3 @@ twbs:bootstrap
 kadira:flow-router
 kadira:blaze-layout
 zimme:active-route
-iron:router
