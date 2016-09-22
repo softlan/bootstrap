@@ -4,5 +4,11 @@
         <a href={{pathForPage}}>{{name}}</a>
     </li>
     {{/each}}
-    <li><a href="#">Contact</a></li>
+
+    {{#if currentUser}}
+        <li><a href="#" class="logout">Logout</a></li>
+    {{else}}
+        <li><a href="/register">Register</a></li>
+        <li><a href="/sign-in">Login</a></li>
+    {{/if}}
 </template>

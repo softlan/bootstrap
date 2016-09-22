@@ -16,30 +16,31 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
-    <Content Include="client\imports\org\otk\tpl\cover\css\cover.css" />
-    <Content Include="client\imports\org\otk\tpl\justified\css\justified-nav.css" />
+    <Content Include="client\tpl\cover\css\cover.css" />
+    <Content Include="client\imports\justified\css\justified-nav.css" />
     <Content Include="client\master_layout.html" />
     <Content Include="client\nav.html" />
     <Content Include="client\views\home.html" />
     <Content Include="client\views\features.html" />
+    <Content Include="client\views\login.html" />
     <Content Include="package.json" />
     <Content Include="client\main.html" />
     <Content Include="client\main.css" />
     <Compile Include="client\lib\routes.js" />
+    <Compile Include="client\login.js" />
     <Compile Include="client\main.js" />
     <Compile Include="lib\api.js" />
+    <Compile Include="lib\rout.js" />
     <Compile Include="server\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="client" />
-    <Folder Include="client\imports\org\otk\tpl\cover\css\" />
-    <Folder Include="client\imports\org\" />
-    <Folder Include="client\imports\org\med\" />
+    <Folder Include="client\tpl\cover\css\" />
     <Folder Include="client\imports\org\otk\" />
-    <Folder Include="client\imports\org\otk\tpl\" />
-    <Folder Include="client\imports\org\otk\tpl\cover\" />
-    <Folder Include="client\imports\org\otk\tpl\justified\" />
-    <Folder Include="client\imports\org\otk\tpl\justified\css\" />
+    <Folder Include="client\tpl\" />
+    <Folder Include="client\tpl\cover\" />
+    <Folder Include="client\imports\justified\" />
+    <Folder Include="client\imports\justified\css\" />
     <Folder Include="client\lib\" />
     <Folder Include="client\views\" />
     <Folder Include="lib\" />

@@ -1,4 +1,4 @@
-﻿var pages = [
+﻿pages = [
     {
         address: '/',
         name: 'Главная',
@@ -47,7 +47,7 @@
     },
 ];
 
-BlazeLayout.setRoot('body');
+BlazeLayout.setRoot('body'); // для исключения промежуточного div, чтоб сразу начиналось всё с body
 
 /*var adminSection = FlowRouter.group({
     prefix: "/admin"
@@ -78,68 +78,119 @@ adminSection.route('/:page*', {
 });*/
 
 Template.nav.helpers({
+    // для формирования меню в шаблоне nav
     pathForPage: function () {
         var page = this;
         var params = {
             page: page.address,
         };
         var queryParams = {};
-        var routeName = page.address;
-        var path = FlowRouter.path(routeName, params, queryParams);
+        var routeAddress = page.address;
+        var path = FlowRouter.path(routeAddress, params, queryParams);
 
         return path;
     },
+    // получение коллекции pages
     pages: function () {
         return pages; //Pages.find();
     }
 });
 
+Template.nav.events({
+    'click .logout': function (event) {
+        event.preventDefault();
+        Meteor.logout();
+        FlowRouter.go('sign-in');
+    }
+});
+
+
+T9n.setLanguage('ru');
 
 var mainSection = FlowRouter.group({
     prefix: "" // "/:foo(\\d+)"
 });
 
+
+mainSection.route('/register', {
+    name: 'register',
+    action() {
+        BlazeLayout.render('register', {});
+    }
+});
+
+
+
+/*mainSection.route('/login', {
+    name: 'login',
+    action() {
+        BlazeLayout.render('login', { });
+    }
+});*/
+
+// Options
+AccountsTemplates.configure({
+    defaultLayout: 'myLayout',
+    defaultLayoutRegions: {},
+    defaultContentRegion: 'main',
+    showForgotPasswordLink: true,
+    overrideLoginErrors: true,
+    enablePasswordChange: true,
+
+    // sendVerificationEmail: true,
+    // enforceEmailVerification: true,
+    //confirmPassword: true,
+    //continuousValidation: false,
+    //displayFormLabels: true,
+    //forbidClientAccountCreation: true,
+    //formValidationFeedback: true,
+    //homeRoutePath: '/',
+    //showAddRemoveServices: false,
+    //showPlaceholders: true,
+
+    negativeValidation: true,
+    positiveValidation: true,
+    negativeFeedback: false,
+    positiveFeedback: true,
+
+    // Privacy Policy and Terms of Use
+    //privacyUrl: 'privacy',
+    //termsUrl: 'terms-of-use',
+});
+
+//Routes
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signIn');
+AccountsTemplates.configureRoute('signUp');
+AccountsTemplates.configureRoute('verifyEmail');
+
 mainSection.route('/:page*', {  //'/:page/:subpage*'
-    action: function(params, queryParams) {
+    triggersEnter: [AccountsTemplates.ensureSignedIn],
+    action: function (params, queryParams) {
         for (var i = 0; i < pages.length; i++) {
             if (pages[i].address == '/' + (params.page == undefined ? "" : params.page)) {
                 var page = pages[i];
 
-                //if (page.tpl == 'secondLayout') import '/client/imports/css/justified-nav.css';
-                //else import '/client/imports/css/cover.css';
-
-                /*if (params.subpage != undefined) { // вложенные страницы
-                    for (var j = 0; j < page.subpages.length; j++) {
-                        if (page.subpages[j].address == params.subpage) {
-                            page = page.subpages[j];
-                            this.name = page.name;
-                            break;
-                        }
-                    }
-                }*/
                 break;
             }
         }
 
         BlazeLayout.render(page.tpl, page.fields[0]);
-        
+
     },
-    // перезагрузка (вроде только данных)
-    triggersEnter: [reloadCheck],
-    triggersExit: [routeCleanup]
 });
-
-function reloadCheck(context, redirect, stop) {
-    if (fireReload) {
-        console.log('Reloading ...');
-        FlowRouter.reload();
-        stop();
+/*if (params.subpage != undefined) { // вложенные страницы
+    for (var j = 0; j < page.subpages.length; j++) {
+        if (page.subpages[j].address == params.subpage) {
+            page = page.subpages[j];
+            this.name = page.name;
+            break;
+        }
     }
-}
+}*/
 
-function routeCleanup() {
-    fireReload = !fireReload;
-}
 
 
 /*FlowRouter.route('/', {

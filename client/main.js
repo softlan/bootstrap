@@ -4,8 +4,8 @@ import { Mongo } from 'meteor/mongo';
 
 import './main.html';
 
-if (true) import './imports/org/otk/tpl/cover/css/cover.css';
-else import './imports/org/otk/tpl/justified/css/justified-nav.css';
+/*if (true) import './imports/org/otk/tpl/cover/css/cover.css';
+else import './imports/org/otk/tpl/justified/css/justified-nav.css';*/
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
@@ -29,3 +29,4 @@ fireReload = false;
 
 Meteor.startup(function () {
 });
+
