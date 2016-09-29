@@ -30,7 +30,6 @@
     <Compile Include="client\login.js" />
     <Compile Include="client\main.js" />
     <Compile Include="lib\api.js" />
-    <Compile Include="lib\rout.js" />
     <Compile Include="server\main.js" />
   </ItemGroup>
   <ItemGroup>

@@ -177,7 +177,7 @@ mainSection.route('/:page*', {  //'/:page/:subpage*'
         for (var i = 0; i < pages.length; i++) {
             if (pages[i].address == '/' + (params.page == undefined ? "" : params.page)) {
                 var page = pages[i];
-
+                
                 break;
             }
         }
