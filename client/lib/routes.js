@@ -167,7 +167,10 @@ AccountsTemplates.configureRoute('signUp');
 AccountsTemplates.configureRoute('verifyEmail');
 
 mainSection.route('/:page*', {  //'/:page/:subpage*'
-    triggersEnter: [AccountsTemplates.ensureSignedIn],
+    //triggersEnter: [AccountsTemplates.ensureSignedIn],
+    triggersEnter: [function (context, redirect, stop) {
+        redirect('/some-other-path');
+    }],
     action: function (params, queryParams) {
         for (var i = 0; i < pages.length; i++) {
             if (pages[i].address == '/' + (params.page == undefined ? "" : params.page)) {
