@@ -22,11 +22,19 @@ Template.hello.events({
   'click a'(event, instance) {
     // increment the counter when button is clicked
     instance.counter.set(instance.counter.get() + 1);
-  },
+
+    Meteor.call('rolesCreateUser', Meteor.userId(), function (error, newCreatedUser) {
+
+        if (error) {
+            alert('error - ' + error);
+        } else {
+            alert(newCreatedUser);
+        }
+
+    });  },
 });
 
 fireReload = false;
 
 Meteor.startup(function () {
 });
-
