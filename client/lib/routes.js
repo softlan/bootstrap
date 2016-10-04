@@ -169,8 +169,10 @@ AccountsTemplates.configureRoute('verifyEmail');
 mainSection.route('/:page*', {  //'/:page/:subpage*'
     //triggersEnter: [AccountsTemplates.ensureSignedIn],
     triggersEnter: [function (context, redirect, stop) {
+        // устанавливаем страницу только для зарегистрированных пользователей
         if (context.params.page == "features") {
             AccountsTemplates.ensureSignedIn(context, redirect, stop);
+            Errors.clearSeen();
         }
     }],
     action: function (params, queryParams) {
@@ -186,6 +188,7 @@ mainSection.route('/:page*', {  //'/:page/:subpage*'
 
     },
 });
+
 /*if (params.subpage != undefined) { // вложенные страницы
     for (var j = 0; j < page.subpages.length; j++) {
         if (page.subpages[j].address == params.subpage) {

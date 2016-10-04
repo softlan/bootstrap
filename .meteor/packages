@@ -28,3 +28,4 @@ accounts-password
 useraccounts:flow-routing
 useraccounts:bootstrap
 alanning:roles
+softlan:errors
